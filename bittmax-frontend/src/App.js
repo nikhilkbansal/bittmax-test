@@ -94,7 +94,6 @@ class App extends React.Component {
           .then((data) => {
 
 
-            console.log('data', data)
             data.buying = this.getCumulative(data.buying);
             data.selling = this.getCumulative(data.selling);
             this.setState({ data });
@@ -110,7 +109,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('state', this.state);
     const { order, data } = this.state;
     const leftData = order === 'buyingFirst' ? data.buying : data.selling;
     const rigthData = order === 'buyingFirst' ? data.selling : data.buying;
