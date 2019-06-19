@@ -4,6 +4,24 @@ import { Table, Container, Row, Col, Button } from 'reactstrap';
 import { AreaChart } from 'react-chartkick'
 import 'chart.js';
 
+let data = {
+  selling: {
+    data: [
+      { price: 123, quantity: 2, sum: 2 },
+      { price: 332, quantity: 2, sum: 2 },
+      { price: 332, quantity: 2, sum: 2 },
+      { price: 332, quantity: 2, sum: 2 },
+    ]
+  },
+  buying: {
+    data: [
+      { price: 123, quantity: 2, sum: 2 },
+      { price: 123, quantity: 2, sum: 2 },
+      { price: 123, quantity: 2, sum: 2 },
+      { price: 123, quantity: 2, sum: 2 },
+    ]
+  }
+};
 
 function DataTable({ data, reverseOrder, type }) {
   const priceClassName = type === 'buy' ? 'buyingDigits' : 'sellingDigits';
@@ -81,25 +99,25 @@ class App extends React.Component {
   }
 
   getData = () => {
-    fetch('http://localhost:3001/')
-      .then((response) => response.json())
-      .then((data) => {
+    // fetch('http://localhost:3001/')
+    //   .then((response) => response.json())
+    //   .then((data) => {
 
-        fetch('http://localhost:3001/data/', {
-          headers: {
-            authorization: data.token
-          },
-        })
-          .then((response) => response.json())
-          .then((data) => {
+    //     fetch('http://localhost:3001/data/', {
+    //       headers: {
+    //         authorization: data.token
+    //       },
+    //     })
+    //       .then((response) => response.json())
+    //       .then((data) => {
 
 
-            data.buying = this.getCumulative(data.buying);
-            data.selling = this.getCumulative(data.selling);
-            this.setState({ data });
-          });
+    data.buying = this.getCumulative(data.buying);
+    data.selling = this.getCumulative(data.selling);
+    this.setState({ data });
+    //     });
 
-      });
+    // });
   }
 
   toggleOrder = () => {
